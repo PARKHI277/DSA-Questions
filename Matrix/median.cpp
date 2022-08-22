@@ -2,7 +2,7 @@
 #include <iostream>
 #include <bits/stdc++.h>
 #include<vector>
-
+using namespace std;
 int median(vector<vector<int>>&matrix, int r, int c)
 {
         // code here       
