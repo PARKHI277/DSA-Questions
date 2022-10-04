@@ -12,7 +12,7 @@ void f(vector<int>&v)
 }
 
 
-void SortedStack :: sort()
+void SortedStack 
 
 {
 
