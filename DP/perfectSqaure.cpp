@@ -2,7 +2,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-// recursion
+// recursion - TLE
 int solve(int n)
 {
     if(n == 0)
