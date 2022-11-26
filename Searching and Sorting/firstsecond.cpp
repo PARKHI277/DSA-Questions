@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
  
+ // using binary search
  int first(int arr[],int x, int n)
 {
     int low = 0, high = n - 1, res = -1;
