@@ -22,12 +22,12 @@ using namespace std;
        return dia;
        
    }
-   int height(Node* root,int &d){
+   int height(Node* root,int &d)
+   {
        if(!root)return 0;
        int lh=height(root->left,d);
        int rh=height(root->right,d);
-       d=max(d,lh+rh+1);
+       d=max(d,lh+rh);
        return 1+max(lh,rh);
        
-       
-   }
+    }
