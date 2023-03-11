@@ -1,21 +1,13 @@
 class Solution {
 public:
     int singleNonDuplicate(vector<int>& nums) {
-        map<int,int>m;
-        for(int i =0;i<nums.size();i++)
+       int n = nums.size();
+        int elem = 0;
+        for(int i = 0;i<n;i++)
         {
-            m[nums[i]]++;
-        }
-        int result;
-        
-        for(auto i : m)
-        {
-            if(i.second == 1)
-            {
-              result = i.first;
-            }
+             elem = elem^nums[i];
         }
         
-        return result;
+        return elem;
     }
 };
