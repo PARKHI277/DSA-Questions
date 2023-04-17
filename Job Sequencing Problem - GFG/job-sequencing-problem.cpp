@@ -26,42 +26,27 @@ struct Job
 class Solution 
 {
     public:
-    static bool cmp(Job a , Job b)
-    {
-        return a.profit > b.profit;
-    }
     //Function to find the maximum profit and the number of jobs done.
     vector<int> JobScheduling(Job arr[], int n) 
     { 
-       sort(arr, arr + n, cmp);
-      int maxi = arr[0].dead;
-      for (int i = 1; i < n; i++) {
-         maxi = max(maxi, arr[i].dead);
-      }
-
-      int slot[maxi + 1];
-
-      for (int i = 0; i <= maxi; i++)
-         slot[i] = -1;
-
-      int countJobs = 0, jobProfit = 0;
-
-      for (int i = 0; i < n; i++) {
-         for (int j = arr[i].dead; j > 0; j--) {
-            if (slot[j] == -1) {
-               slot[j] = i;
-               countJobs++;
-               jobProfit += arr[i].profit;
-               break;
+        // your code here
+               map<int, vector<int>> m;
+        for(int i=0; i<n; i++) m[arr[i].dead].push_back(arr[i].profit);
+        
+        priority_queue<int, vector<int>, greater<int>> pq;
+        
+        for(auto i : m) {
+            int s = i.first;
+            vector<int> v = i.second;
+            for(int i : v) {
+                pq.push(i);
+                if(pq.size() > s) pq.pop();
             }
-         }
-      }
-        vector<int>ans;
-        ans.push_back(countJobs);
-        ans.push_back(jobProfit);
+        }
+        int a = pq.size(), b = 0;
+        while(pq.size()) b += pq.top(), pq.pop();
         
-        return ans;
-        
+        return {a, b};
     } 
 };
 
