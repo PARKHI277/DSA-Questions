@@ -34,7 +34,7 @@ public:
               
                 if(nrow >=0 && nrow <n && ncol >=0 && ncol < m 
                 && vis[nrow][ncol] == 0 && grid[nrow][ncol] == 1) {
-                    q.push({nrow, ncol});
+                    q.push( {nrow, ncol});
                     vis[nrow][ncol] = 1; 
                 }
             }
