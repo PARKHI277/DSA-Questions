@@ -127,35 +127,26 @@ struct Node
 };
  */
 
+void find(Node *root,int level,vector<int>&ans)
+{
+    if(root == NULL)
+    {
+        return;
+    }
+    if(ans.size() == level)
+    {
+        ans.push_back(root->data);
+        
+    }
+    find(root->left,level+1,ans);
+        find(root->right,level+1,ans);
+}
 //Function to return a list containing elements of left view of the binary tree.
 vector<int> leftView(Node *root)
 {
    // Your code here
+   
    vector<int>ans;
-   queue<Node*>q;
-   if(root == 0)
-   {
-       return ans;
-   }
-   q.push(root);
-   while(!q.empty())
-   {
-       int s = q.size();
-       
-       ans.push_back(q.front() -> data);
-       while(s--)
-       {
-           Node*t  = q.front();
-           q.pop();
-           if(t->left)
-           {
-               q.push(t->left);
-           }
-           if(t->right)
-           {
-               q.push(t->right);
-           }
-       }
-   }
+   find(root,0,ans);
    return ans;
 }
