@@ -8,54 +8,41 @@
  */
 class Solution {
 public:
-    int find(ListNode*head1 , ListNode*head2)
-    {
-        int l1 = 0;
-        int l2 = 0;
-        while(head1 != NULL || head2 != NULL)
-        {
-            if(head1 != NULL)
-            {
-                l1++;
-                head1 = head1->next;
-            }
-            if(head2 != NULL)
-            {
-                l2++;
-                head2 = head2->next;
-            }
-            
-           
+  int length(ListNode *head){
+        int len = 0;
+        while(head){
+            len++;
+            head = head->next;
         }
-        return l1-l2;
+        return len;
     }
-    
-    ListNode *getIntersectionNode(ListNode *head1, ListNode *head2) {
-        int diff = find(head1,head2);
-        if(diff < 0)
-        {
-            while(diff++ != 0)
-            {
-                head2 = head2->next;
+
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        if(!headA || !headB) return NULL;
+
+        //step1
+        int lenA = length(headA), lenB = length(headB);
+
+        //step2
+        if(lenA>lenB){
+            while(lenA>lenB){
+                headA = headA->next;
+                lenA--;
             }
         }
-        else
-        {
-            while(diff-- !=0)
-            {
-                head1 =  head1->next;
+        else if(lenA<lenB){
+            while(lenA<lenB){
+                headB = headB->next;
+                lenB--;
             }
         }
         
-        while(head1 != NULL)
-        {
-            if(head1 == head2)
-            {
-                return head1;
-            }
-            head2 = head2->next;
-            head1 = head1->next;
+        //step 3
+        while(headA && headB){
+            if(headA==headB) return headA;
+            headA = headA->next;
+            headB = headB->next;
         }
-        return head1;
+        return NULL;
     }
 };
