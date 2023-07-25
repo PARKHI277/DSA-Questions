@@ -11,20 +11,21 @@ class Solution{
 public:
     int minimumDays(int S, int N, int M){
         // code here
-        int sun = S/7;
-        int buys = S-sun;
-        int totalfood = S*M;
-        int ans = 0;
+        int sunday  = S/7;
+        int buyingDays = S-sunday;
         
-        if(totalfood%N == 0)
+        int totalFood = S*M;
+        int ans = 0;
+        if(totalFood % N == 0)
         {
-           ans = totalfood/N;
+            ans = totalFood/N;
         }
         else
         {
-            ans = (totalfood/N)+1;
+            ans = totalFood/N + 1;
         }
-        if(ans <= buys)
+        
+        if(ans <= buyingDays)
         {
             return ans;
         }
