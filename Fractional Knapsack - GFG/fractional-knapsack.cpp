@@ -19,13 +19,13 @@ struct Item{
 
 
 class Solution
-{
-    public:
-    //Function to get the maximum total value in the knapsack.
+{   
     static bool cmp(pair<double,Item>a,pair<double,Item>b)
     {
         return a.first > b.first;
     }
+    public:
+    //Function to get the maximum total value in the knapsack.
     double fractionalKnapsack(int W, Item arr[], int n)
     {
         // Your code here
@@ -33,32 +33,34 @@ class Solution
         for(int i = 0;i<n;i++)
         {
             double perUnit = (1.0*arr[i].value)/arr[i].weight;
-            pair<double,Item>p = make_pair(perUnit,arr[i]);
+            pair<double,Item>p  = make_pair(perUnit,arr[i]);
             v.push_back(p);
-        }
-        sort(v.begin(),v.end(),cmp);
+       }
+       sort(v.begin(),v.end(),cmp);
+       
+       double totalv = 0;
+       
+       for(int i =  0;i<n;i++)
+       {
+           if(v[i].second.weight > W)
+           {
+               totalv = totalv + W*v[i].first;
+               W = 0;
+           }
+           else
+           {
+               totalv = totalv + v[i].second.value;
+               W = W - v[i].second.weight;
+           }
+       }
+       return totalv;
         
-        double totalv = 0;
-        for(int i = 0;i<n;i++)
-        {
-            if(v[i].second.weight > W)
-            {
-                totalv  = totalv + W*v[i].first;
-                W = 0;
-            }
-            else
-            {
-                totalv  = totalv + v[i].second.value;
-                W = W-v[i].second.weight;
-            }
-        }
-        
-        return totalv;
     }
-    
         
 };
 
+
+  
 
 //{ Driver Code Starts.
 int main()
