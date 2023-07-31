@@ -18,7 +18,7 @@ class Solution {
             int node = q.front();
             q.pop();
             bfs.push_back(node);
-            for(auto it:adj[node])
+            for(auto it : adj[node])
             {
                 if(!vis[it])
                 {
@@ -26,11 +26,11 @@ class Solution {
                     q.push(it);
                 }
             }
-            
         }
-        
         return bfs;
     }
+    
+   
 };
 
 //{ Driver Code Starts.
