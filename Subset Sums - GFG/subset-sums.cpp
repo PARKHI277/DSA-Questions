@@ -7,25 +7,31 @@ class Solution
 {
 public:
 
-     void subset(int index , vector<int>&arr,int n,vector<int>&ans,int sum)
-     {
-         if(index == n)
-         {
-             ans.push_back(sum);
-             return;
-         }
-         
-         subset(index+1,arr,n,ans,sum+arr[index]);
-         subset(index+1,arr,n,ans,sum);
-     }
-     
+    void generateSubsets(int i , vector<int>&arr,vector<int>&subset,vector<int>&res)
+    {
+        if(i == arr.size())
+        {
+            int sum = 0;
+            for(int num : subset)
+            {
+                sum += num;
+            }
+            res.push_back(sum);
+            return;
+        }
+        subset.push_back(arr[i]);
+        generateSubsets(i+1,arr,subset,res);
+        subset.pop_back();
+        generateSubsets(i+1,arr,subset,res);
+    }
     vector<int> subsetSums(vector<int> arr, int N)
     {
         // Write Your Code here
-        vector<int>ans;
-        subset(0,arr,N,ans,0);
-        sort(ans.begin(),ans.end());
-        return ans;
+        vector<int>res;
+        vector<int>subset;
+        generateSubsets(0,arr,subset,res);
+        sort(res.begin(),res.end());
+        return res;
     }
 };
 
