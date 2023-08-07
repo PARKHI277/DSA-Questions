@@ -5,6 +5,7 @@ public:
         if(!matrix.size()) return false;
         int hi = (matrix.size() * matrix[0].size()) - 1;
         
+        
         while(lo <= hi) {
             int mid = (lo + (hi - lo) / 2);
             if(matrix[mid/matrix[0].size()][mid % matrix[0].size()] == target) {
