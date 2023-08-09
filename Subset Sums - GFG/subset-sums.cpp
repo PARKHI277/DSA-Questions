@@ -6,8 +6,8 @@ using namespace std;
 class Solution
 {
 public:
-
-    void generateSubsets(int i , vector<int>&arr,vector<int>&subset,vector<int>&res)
+   vector<int>res;
+    void generateSubset(int i ,  vector<int>&arr , vector<int>&subset,vector<int>&res)
     {
         if(i == arr.size())
         {
@@ -20,18 +20,19 @@ public:
             return;
         }
         subset.push_back(arr[i]);
-        generateSubsets(i+1,arr,subset,res);
+        generateSubset(i+1,arr,subset,res);
         subset.pop_back();
-        generateSubsets(i+1,arr,subset,res);
+        generateSubset(i+1,arr,subset,res);
     }
     vector<int> subsetSums(vector<int> arr, int N)
     {
         // Write Your Code here
-        vector<int>res;
+        vector<int>ans;
         vector<int>subset;
-        generateSubsets(0,arr,subset,res);
+        generateSubset(0,arr,subset,res);
         sort(res.begin(),res.end());
         return res;
+        
     }
 };
 
