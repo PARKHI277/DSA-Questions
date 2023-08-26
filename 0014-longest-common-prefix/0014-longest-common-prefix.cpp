@@ -12,19 +12,17 @@ public:
         }
         
         sort(strs.begin(),strs.end());
+        int l  = min(strs[0].size(),strs[n-1].size());
+        int  i = 0;
+        string first  = strs[0];
+        string last = strs[n-1];
         
-        int l = min(strs[0].size(),strs[n-1].size());
+        while(i<l && first[i] == last[i])
+        {
+            i++;
+        }
         
-        int i = 0;
-        string first = strs[0];
-        string last  = strs[n-1];
-        
-            while( i< l  && first[i]  == last[i])
-            {
-                i++;
-            }
         string pre = first.substr(0,i);
         return pre;
-        
     }
 };
