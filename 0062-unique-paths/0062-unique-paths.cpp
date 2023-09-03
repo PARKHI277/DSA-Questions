@@ -1,7 +1,6 @@
 class Solution {
 public:
-    
-    int countPaths(int i ,int j,int m,int n,vector<vector<int>>&dp)
+   int countPaths(int i ,int j,int m,int n,vector<vector<int>>&dp)
     {
         if(i == m-1 && j == n-1)
         {
