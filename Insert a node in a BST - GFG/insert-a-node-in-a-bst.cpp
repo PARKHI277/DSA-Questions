@@ -35,42 +35,28 @@ struct Node {
 class Solution
 {
     public:
-        Node* insert(Node* node, int data) {
+        Node* insert(Node* root, int data) {
         
             // Your code goes here
-            Node *temp = node;
-            Node *newNode = new Node(data);
-            while(temp)
-            {
-                if(temp->data == data)
-                {
-                    return node;
-                }
-                else if(data > temp->data)
-                {
-                    if(temp->right == NULL)
-                    {
-                        temp->right = newNode;
-                    }
-                    else
-                    {
-                        temp  = temp->right;
-                    }
-                }
-                else
-                {
-                    if(temp->left == NULL)
-                    {
-                        temp->left = newNode;
-                    }
-                    else
-                    {
-                        temp  = temp->left;
-                    }
-                }
-            }
-            
-            return newNode;
+           if(!root)
+           {
+               return new Node(data);
+           }
+           if(root->data == data)
+           {
+               return root;
+           }
+           
+           else if(data > root->data)
+           {
+               root->right = insert(root->right,data);
+           }
+           else
+           {
+               root->left = insert(root->left,data);
+           }
+           
+           return root;
     }
 
 };
