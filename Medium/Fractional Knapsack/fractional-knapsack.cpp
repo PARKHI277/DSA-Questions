@@ -19,48 +19,46 @@ struct Item{
 
 
 class Solution
-{   
-    static bool cmp(pair<double,Item>a,pair<double,Item>b)
-    {
-        return a.first > b.first;
-    }
+{
     public:
     //Function to get the maximum total value in the knapsack.
     double fractionalKnapsack(int W, Item arr[], int n)
     {
         // Your code here
-        vector<pair<double,Item>>v;
+        double ans = 0;
+        vector<pair<double,int>>v;
         for(int i = 0;i<n;i++)
         {
-            double perUnit = (1.0*arr[i].value)/arr[i].weight;
-            pair<double,Item>p  = make_pair(perUnit,arr[i]);
-            v.push_back(p);
-       }
-       sort(v.begin(),v.end(),cmp);
-       
-       double totalv = 0;
-       
-       for(int i =  0;i<n;i++)
-       {
-           if(v[i].second.weight > W)
-           {
-               totalv = totalv + W*v[i].first;
-               W = 0;
-           }
-           else
-           {
-               totalv = totalv + v[i].second.value;
-               W = W - v[i].second.weight;
-           }
-       }
-       return totalv;
+            double a = arr[i].value;
+            double b = arr[i].weight;
+            
+            double c = a/b;
+            
+            v.push_back({c,i});
+        }
         
+        sort(v.begin(),v.end());
+        
+        for(int i = n-1;i>=0;i--)
+        {
+            if(W < arr[v[i].second].weight)
+            {
+                double a = W;
+                ans += a * v[i].first;
+                break;
+            }
+            else
+            {
+                ans += arr[v[i].second].value;
+                W -= arr[v[i].second].weight;
+            }
+        }
+        
+        return ans;
     }
         
 };
 
-
-  
 
 //{ Driver Code Starts.
 int main()
@@ -68,7 +66,7 @@ int main()
 	int t;
 	//taking testcases
 	cin>>t;
-	cout<<setprecision(2)<<fixed;
+	cout<<setprecision(6)<<fixed;
 	while(t--){
 	    //size of array and weight
 		int n, W;
